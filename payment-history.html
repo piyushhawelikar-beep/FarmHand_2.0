@@ -88,5 +88,104 @@
     </div>
   </section>
 
+
+<!-- BEGIN: Language Selector (added) -->
+<div id="langPopup" aria-hidden="true">
+  <div class="lang-popup-inner" role="dialog" aria-modal="true" aria-label="Select Language">
+    <h2>Select Language</h2>
+    <select id="langSelect" aria-label="Select language">
+      <option value="">English</option>
+      <option value="hi">हिन्दी</option>
+      <option value="mr">मराठी</option>
+      <option value="gu">ગુજરાતી</option>
+      <option value="ta">தமிழ்</option>
+      <option value="te">తెలుగు</option>
+      <option value="ml">മലയാളം</option>
+      <option value="kn">ಕನ್ನಡ</option>
+      <option value="pa">ਪੰਜਾਬੀ</option>
+      <option value="bn">বাংলা</option>
+      <option value="or">ଓଡ଼ିଆ</option>
+    </select>
+    <div class="lang-actions">
+      <button id="langOk">OK</button>
+      <button id="langSkip">Continue in English</button>
+    </div>
+  </div>
+</div>
+
+<div id="google_translate_element" style="display:none"></div>
+
+<style>
+/* Theme-colored popup (green / earthy tone) */
+#langPopup{position:fixed;inset:0;background:rgba(0,0,0,0.55);display:flex;align-items:center;justify-content:center;z-index:99999}
+.lang-popup-inner{background:linear-gradient(180deg,#f7fbf6,#eff7ee);border-radius:12px;padding:20px 26px;box-shadow:0 8px 30px rgba(0,0,0,0.25);min-width:280px;max-width:92%;text-align:center;font-family:inherit;color:#123; border:2px solid #dfeedd}
+.lang-popup-inner h2{margin:0 0 12px;font-size:20px;color:#1b5e20}
+.lang-popup-inner select{width:100%;padding:10px;border-radius:8px;border:1px solid #c7e0c7;background:white;margin-bottom:12px;font-size:16px}
+.lang-actions{display:flex;gap:10px;justify-content:center}
+.lang-actions button{padding:10px 14px;border-radius:8px;border:none;cursor:pointer;font-weight:600}
+#langOk{background:#2e7d32;color:white}
+#langSkip{background:transparent;border:1px solid #2e7d32;color:#2e7d32}
+@media (max-width:480px){ .lang-popup-inner{padding:16px} }
+</style>
+
+
+<script>
+(function(){
+  const popup = document.getElementById('langPopup');
+  const okBtn = document.getElementById('langOk');
+  const skipBtn = document.getElementById('langSkip');
+  const sel = document.getElementById('langSelect');
+
+  function hidePopup() {
+    popup.style.display = 'none';
+    popup.setAttribute('aria-hidden','true');
+  }
+
+  const saved = localStorage.getItem('siteLanguage');
+  if (saved) {
+    hidePopup();
+  } else {
+    window.addEventListener('load', function(){ popup.style.display='flex'; });
+  }
+
+  okBtn.addEventListener('click', function(){
+    const lang = sel.value;
+    localStorage.setItem('siteLanguage', lang);
+    setTranslateCookie(lang);
+  });
+  skipBtn.addEventListener('click', function(){
+    localStorage.setItem('siteLanguage','');
+    clearTranslateCookie();
+    hidePopup();
+  });
+
+  function setTranslateCookie(lang){
+    try {
+      var expiry = new Date(); expiry.setTime(expiry.getTime() + (365*24*60*60*1000));
+      document.cookie = "googtrans=/en/" + lang + "; path=/; expires=" + expiry.toUTCString();
+      document.cookie = "googtrans=/en/" + lang + "; domain=" + location.hostname + "; path=/; expires=" + expiry.toUTCString();
+      hidePopup();
+      setTimeout(()=>window.location.reload(),500);
+    } catch(e){ console.error(e); }
+  }
+  function clearTranslateCookie(){
+    document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; domain=" + location.hostname + "; path=/;";
+  }
+})();
+</script>
+
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'en',
+    includedLanguages: 'hi,mr,gu,ta,te,ml,kn,pa,bn,or',
+    layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+  }, 'google_translate_element');
+}
+</script>
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<!-- END: Language Selector (added) -->
 </body>
 </html>
