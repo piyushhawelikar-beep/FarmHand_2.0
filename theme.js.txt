@@ -1,0 +1,19 @@
+// theme.js
+function applyTheme() {
+  const darkMode = localStorage.getItem("darkMode") === "true";
+  if (darkMode) {
+    document.body.classList.add("dark-mode");
+  } else {
+    document.body.classList.remove("dark-mode");
+  }
+}
+
+// Call immediately
+applyTheme();
+
+// Allow toggling from settings page
+function toggleDarkMode() {
+  const darkMode = localStorage.getItem("darkMode") === "true";
+  localStorage.setItem("darkMode", !darkMode);
+  applyTheme();
+}

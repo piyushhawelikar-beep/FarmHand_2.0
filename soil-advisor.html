@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Soil & Crop Advisor - FarmHand</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="translations.js"></script>
+  <script src="theme.js"></script>
+  <script src="languages.js"></script>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-logo">🌾 FarmHand</div>
+    <ul class="nav-links">
+      <li><a href="index.html" data-translate="home">Home</a></li>
+      <li><a href="farmer-login.html" data-translate="farmer-login">Farmer</a></li>
+      <li><a href="labour-login.html" data-translate="labour">Labour</a></li>
+      <li><a href="jobs.html" data-translate="jobs">Jobs</a></li>
+      <li><a href="postjob.html" data-translate="post-job">Post Job</a></li>
+      <li><a href="payments.html" data-translate="payments">Payments</a></li>
+      <li><a href="reports.html" data-translate="reports">Reports</a></li>
+      <li><a href="notifications.html" data-translate="notifications">Notifications</a></li>
+      <li><a href="weather.html" data-translate="weather">Weather</a></li>
+      <li><a href="soil-advisor.html" class="active" data-translate="soil-advisor">Soil Advisor</a></li>
+      <li><a href="about.html" data-translate="about">About</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <h1>🌱 Soil & Crop Advisor</h1>
+    <p>Enter your soil type and location to get personalized crop advice.</p>
+
+    <form id="soilForm">
+      <label for="soil">Select Soil Type:</label>
+      <select id="soil" required>
+        <option data-translate="">--Choose Soil Type--</option>
+        <option data-translate="black">Black Soil</option>
+        <option data-translate="red">Red Soil</option>
+        <option data-translate="alluvial">Alluvial Soil</option>
+        <option data-translate="sandy">Sandy Soil</option>
+        <option data-translate="clay">Clay Soil</option>
+      </select>
+
+      <label data-translate="location">Enter Location:</label>
+      <input type="text" id="location" placeholder="e.g. Nagpur" value="Nagpur" required>
+
+      <button type="submit">Get Advice</button>
+    </form>
+
+    <div id="adviceResult" class="result-box"></div>
+  </div>
+
+  <script>
+    const weatherData = {
+      "Nagpur": {
+        temperature: "32°C",
+        rainfall: "20% chance of rain",
+        season: "Kharif",
+        sowingDelay: "2 days (due to mild rain forecast)"
+      },
+      "Mumbai": {
+        temperature: "28°C",
+        rainfall: "70% chance of rain",
+        season: "Kharif",
+        sowingDelay: "Wait 5 days (heavy rain expected)"
+      },
+      "Delhi": {
+        temperature: "34°C",
+        rainfall: "10% chance of rain",
+        season: "Rabi",
+        sowingDelay: "Can sow immediately (dry conditions)"
+      }
+    };
+
+    const soilCrops = {
+      "black": "Cotton, Soybean, Wheat",
+      "red": "Groundnut, Millets, Maize",
+      "alluvial": "Rice, Sugarcane, Wheat",
+      "sandy": "Groundnut, Melons, Pulses",
+      "clay": "Rice, Mustard, Gram"
+    };
+
+    document.getElementById("soilForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const soil = document.getElementById("soil").value;
+      const location = document.getElementById("location").value;
+
+      let result = "";
+      if (soil && weatherData[location]) {
+        const crops = soilCrops[soil];
+        const weather = weatherData[location];
+
+        result = `
+          <h2>📍 Advice for ${location}</h2>
+          <p><b>Soil Type:</b> ${soil.charAt(0).toUpperCase() + soil.slice(1)} Soil</p>
+          <p><b>Suggested Crops:</b> ${crops}</p>
+          <p><b>Weather:</b> ${weather.temperature}, ${weather.rainfall}</p>
+          <p><b>Season:</b> ${weather.season}</p>
+          <p><b>Sowing Date:</b> In ${weather.sowingDelay}</p>
+          <p><b>Ploughing Date:</b> Start 1 week before sowing</p>
+          <p><b>Harvesting Time:</b> 90-120 days after sowing (depending on crop)</p>
+          <p><b>Best Time to Sell:</b> During peak market demand, post-harvest festival season</p>
+        `;
+      } else {
+        result = `<p>⚠️ Data not available. Try with Nagpur, Mumbai, or Delhi for demo.</p>`;
+      }
+
+      document.getElementById("adviceResult").innerHTML = result;
+    });
+
+    // Auto-load Nagpur data
+    window.onload = () => {
+      document.getElementById("soilForm").dispatchEvent(new Event("submit"));
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - FarmHand</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="translations.js"></script>
+  <script src="theme.js"></script>
+  <script src="languages.js"></script>
+</head>
+<body>
+  <div class="form-container">
+    <h2 data-translate="login">Login</h2>
+    <form>
+      <label data-translate="email">Email:</label>
+      <div class="voice-box">
+        <input type="email" id="login-email" required>
+        <button type="button" onclick="startVoiceInput('#login-email')">🎤</button>
+      </div>
+
+      <label data-translate="password">Password:</label>
+      <div class="voice-box">
+        <input type="password" id="login-password" required>
+        <button type="button" onclick="startVoiceInput('#login-password')">🎤</button>
+      </div>
+
+      <button type="submit" class="btn" data-translate="login">Login</button>
+    </form>
+    <p>Don’t have an account? <a href="register.html" data-translate="register">Register</a></p>
+  </div>
+
+  <footer>
+    <p>© 2025 FarmHand | All Rights Reserved</p>
+  </footer>
+
+  <script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyBZAXH6psNv3-h5WTzCZZh4L29NS86H91Y",
+    authDomain: "farmhand-76d1c.firebaseapp.com",
+    projectId: "farmhand-76d1c",
+    storageBucket: "farmhand-76d1c.firebasestorage.app",
+    messagingSenderId: "349851657331",
+    appId: "1:349851657331:web:5fcf9ede5a6fd6dbe7b606",
+    measurementId: "G-WDFXF5V0KL"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-translate="settings">Settings</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="translations.js"></script>
+  <script src="theme.js"></script>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav>
+    <div class="logo">FarmHand</div>
+    <ul>
+      <a href="dashboard.html" data-translate="dashboard">Dashboard</a>
+    <a href="weather.html" data-translate="weather">Weather</a>
+    <a href="postjob.html" data-translate="post">Post Job</a>
+    <a href="notifications.html" data-translate="notification">Notifications</a>
+    <a href="settings.html" data-translate="settings">Settings</a>
+  </nav>
+ <div class="form-container">
+    <h2 data-translate="settings">Settings</h2>
+
+    <!-- Language Selection -->
+    <label for="langSelect"><strong>Select Language:</strong></label>
+    <select id="langSelect" onchange="changeLanguage(this.value)">
+      <option value="en">English</option>
+      <option value="hi">हिंदी</option>
+      <option value="mr">मराठी</option>
+    </select>
+
+    <br><br>
+
+    <!-- Dark Mode Toggle -->
+    <label><strong>Dark Mode:</strong></label>
+    <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
+  </div>
+  <label>Voice Input:</label>
+  <select id="mic" onchange="saveSettings()">
+    <option value="on">🎤 Enabled</option>
+    <option value="off">🔇 Disabled</option>
+  </select>
+</main>
+
+  <!-- Settings Content -->
+  <div class="dashboard">
+    <h1>⚙️ Settings</h1>
+
+    <!-- Profile Settings -->
+    <div class="card">
+      <h2>Profile Settings</h2>
+      <form>
+        <label>Name:</label>
+        <input type="text" placeholder="Enter your name"><br><br>
+
+        <label>Email:</label>
+        <input type="email" placeholder="Enter your email"><br><br>
+
+        <label>Password:</label>
+        <input type="password" placeholder="Enter new password"><br><br>
+
+        <button type="submit" class="btn">Save Changes</button>
+      </form>
+    </div>
+      <br><br>
+      <label>Notifications:</label><br>
+      <input type="checkbox" checked> Job Alerts<br>
+      <input type="checkbox" checked> Payment Updates<br>
+      <input type="checkbox"> Marketing Emails<br>
+    </div>
+    <!-- Danger Zone -->
+    <div class="card">
+      <h2 style="color:red;">Danger Zone</h2>
+      <p>⚠️ Deleting your account is permanent and cannot be undone.</p>
+      <button class="btn" style="background:#c62828;">Delete Account</button>
+    </div>
+  </div>
+<script src="languages.js"></script>
+<script>
+  const select = document.getElementById("languageSelect");
+  select.value = localStorage.getItem("language") || "en";
+
+  select.addEventListener("change", () => {
+    const lang = select.value;
+    applyLanguage(lang);
+    // Apply immediately on settings page
+    window.location.reload(); // so all pages refresh with new language
+  });
+</script>
+      <!-- Footer -->
+  <footer>
+    <p>© 2025 FarmHand | All Rights Reserved</p>
+  </footer>
+</body>
+</html>

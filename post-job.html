@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FarmHand | Post Job</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="translations.js"></script>
+  <script src="theme.js"></script>
+  <script src="languages.js"></script>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav>
+    <div class="logo">FarmHand</div>
+    <ul>
+      <li><a href="dashboard.html"data-translate="dashboard">Dashboard</a></li>
+      <li><a href="jobs.html"data-translate="jobs">Jobs</a></li>
+      <li><a href="post-job.html" class="active"data-translate"post-jobs"=>Post Job</a></li>
+      <li><a href="settings.html"data-translate="setting">Settings</a></li>
+    </ul>
+  </nav> 
+<input type="text" placeholder="Enter Job Title" data-mic="true">
+
+  <!-- Post Job Form -->
+  <div class="form-container">
+    <h1 data-translate="post-job">🚜 Post a Job / Request a Machine</h1>
+    
+    <form id="postJobForm">
+      <!-- Job Type -->
+      <label data-translate="job_type">Job Type</label>
+      <select>
+        <option data-translate="harvesting">Harvesting</option>
+        <option data-translate="ploughing">Ploughing</option>
+        <option data-translate="sowing">Sowing</option>
+        <option data-translate="irrigation">Irrigation</option>
+        <option data-translate="cutting">Cutting</option>
+        <option data-translate="machine">Machine Worker</option>
+        <option data-translate="others">Others</option>
+      </select>
+      <!-- Machine Requirement -->
+      <label for="machineType">Machine Required (optional):</label>
+      <select id="machineType" name="machineType">
+        <option data-translate="">-- None --</option>
+        <option data-translate="Tractor">Tractor</option>
+        <option data-translate="Harvester">Harvester</option>
+        <option data-translate="Sowing Machine">Sowing Machine</option>
+        <option data-translate="Drone">Drone</option>
+        <option data-translate="Others">Others</option>
+      </select>
+
+      <!-- Date -->
+      <label data-translate="workDate">Work Date:</label>
+      <input type="date" id="workDate" name="workDate" required>
+      
+      <!-- Work Time Range -->
+      <label>Work Time:</label>
+      <div class="time-range">
+        <input type="time" id="startTime" name="startTime" required>
+        <span>to</span>
+        <input type="time" id="endTime" name="endTime" required>
+      </div>
+
+      <!-- Location -->
+      <label data-translate="location">Location:</label>
+      <input type="text" id="location" name="location" placeholder="Enter farm location" required>
+
+      <!-- Payment -->
+      <label data-translate="payment">Payment (₹):</label>
+      <input type="number" id="payment" name="payment" placeholder="Enter amount" required>
+
+      <!-- Payment Mode -->
+      <label data-translate="paymentMode">Payment Mode:</label>
+      <select id="paymentMode" name="paymentMode" required>
+        <option data-translate="Cash">Cash</option>
+        <option data-translate="UPI">UPI</option>
+        <option data-translate="QR">QR Code</option>
+        <option data-translate="Card">Card</option>
+      </select>
+
+      <!-- Submit -->
+      <button type="submit" class="btn">✅ Post Job</button>
+    </form>
+  </div>
+
+  <footer>
+    <p>© 2025 FarmHand | All Rights Reserved</p>
+  </footer>
+
+   </script>
+</body>
+</html>

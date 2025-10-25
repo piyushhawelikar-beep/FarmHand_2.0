@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FarmHand - Home</title>
+  <link rel="stylesheet" href="home.css">
+  <script src="languages.js"></script>
+</head>
+<script>
+  const select = document.getElementById("languageSelect");
+  select.value = localStorage.getItem("language") || "en";
+
+  select.addEventListener("change", () => {
+    const lang = select.value;
+    applyLanguage(lang);
+    // Apply immediately on settings page
+    window.location.reload(); // so all pages refresh with new language
+  });
+</script>
+<body>
+  <div class="navbar">
+    <h2>FarmHand</h2>
+    <div>
+      <a href="login.html">Login</a>
+      <a href="register.html">Register</a>
+      <a href="about.html">About</a>
+      <a href="settings.html">Settings</a>
+    </div>
+  </div>
+
+  <div class="welcome-text">
+    <h1>Welcome to FarmHand</h1>
+    <p>Connecting Farmers with Helping Hands</p>
+  </div>
+</script>
+</body>
+</html>

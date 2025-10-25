@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FarmHand | Weather Info</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="translations.js"></script>
+  <script src="theme.js"></script>
+  <script src="languages.js"></script>
+</head>
+<body>
+<script src="settings.js"></script>
+
+  <!-- Navbar -->
+  <nav>
+    <div class="logo">FarmHand</div>
+    <ul>
+      <li><a href="dashboard.html"data-translate="dashboard">Dashboard</a></li>
+      <li><a href="soil-advisor.html"data-translate="soil advisor">Soil Advisor</a></li>
+      <li><a href="jobs.html"data-translate="jobs">Jobs</a></li>
+      <li><a href="weather.html" class="active"data-translate="weather">Weather</a></li>
+      <li><a href="notifications.html"data-translate="notifications">Notifications</a></li>
+    </ul>
+  </nav>
+ <nav>
+<input type="text" placeholder="Enter Job Title" data-mic="true">
+
+      <!-- Weather Section -->
+  <section class="weather-section">
+    <h1>🌦️ Live Weather Information</h1>
+    <p>Select your city to get updated weather for farming activities.</p>
+
+    <!-- City Selector -->
+    <div class="city-select">
+      <label for="city">Choose City: </label>
+      <select id="city" onchange="getWeather(this.value)">
+        <option value="Nagpur">Nagpur</option>
+        <option value="Pune">Pune</option>
+        <option value="Nashik">Nashik</option>
+        <option value="Delhi">Delhi</option>
+        <option value="Mumbai">Mumbai</option>
+      </select>
+ 
+    </div>
+
+    <!-- Weather Container -->
+    <div class="weather-container" id="weather-container">
+      <p>Loading weather...</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 FarmHand | All Rights Reserved</p>
+  </footer>
+
+  <!-- Weather Script -->
+  <script>
+    const apiKey = "226e83f232222aa626ec6d661865a5dc"; // 🔑 Replace with your OpenWeatherMap API key
+
+    async function getWeather(city) {
+      try {
+        const response = await fetch(
+          `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`
+        );
+        const data = await response.json();
+
+        const container = document.getElementById("weather-container");
+        container.innerHTML = `
+          <div class="weather-card">
+            <h2>📍 Location: ${data.name}</h2>
+            <p>🌡️ Temperature: <strong>${data.main.temp}°C</strong></p>
+            <p>☁️ Condition: <strong>${data.weather[0].description}</strong></p>
+            <p>💧 Humidity: <strong>${data.main.humidity}%</strong></p>
+            <p>🌬️ Wind Speed: <strong>${data.wind.speed} km/h</strong></p>
+          </div>
+          <div class="weather-card highlight">
+            <h2>🌱 Farming Advice</h2>
+            <ul>
+              <li>✅ Irrigate crops if temperature > 30°C.</li>
+              <li>🌧️ Rain expected Avoid pesticide spraying.</li>
+              <li>🌾 Best sowing days are cooler evenings.</li>
+            </ul>
+          </div>
+        `;
+      } catch (error) {
+        document.getElementById("weather-container").innerHTML =
+          "<p>⚠️ Unable to fetch weather. Please try again.</p>";
+      }
+    }
+
+    // Load default city (Nagpur)
+    window.onload = () => getWeather("Nagpur");
+  </script>
+  </body>
+</html>

@@ -1,0 +1,451 @@
+
+/* =========================
+   GLOBAL STYLES
+========================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: #f8f9fa;
+  color: #333;
+  line-height: 1.6;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+h1, h2, h3 {
+  font-weight: 600;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+nav {
+  background: linear-gradient(90deg, #2e7d32, #66bb6a);
+  color: white;
+  padding: 12px 25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+nav .logo {
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 18px;
+}
+
+nav ul li a {
+  color: white;
+  padding: 6px 14px;
+  border-radius: 6px;
+  transition: background 0.3s;
+}
+
+nav ul li a:hover, nav ul li a.active {
+  background: rgba(255,255,255,0.2);
+}
+
+/* =========================
+   PAGE TITLES
+========================= */
+.page-title {
+  text-align: center;
+  font-size: 1.8rem;
+  margin: 25px 0;
+  color: #2e7d32;
+}
+
+/* =========================
+   DASHBOARD CARDS
+========================= */
+/* Dashboard */
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  margin: 20px;
+}
+
+.card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card h2 {
+  margin-bottom: 10px;
+  color: #2c662d;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 15px;
+  background: #2c662d;
+  color: #fff;
+  border-radius: 6px;
+  text-decoration: none;
+  margin-top: 10px;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: #1b441c;
+}
+
+/* Forms */
+form {
+  max-width: 600px;
+  margin: auto;
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+form label {
+  display: block;
+  margin: 12px 0 5px;
+  font-weight: 600;
+}
+
+form input,
+form select,
+form textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-bottom: 15px;
+}
+
+form button {
+  background: #2c662d;
+  color: #fff;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+form button:hover {
+  background: #1b441c;
+}
+/* =========================
+   NOTIFICATIONS
+========================= */
+.notification-container {
+  max-width: 750px;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.notification-card {
+  display: flex;
+  align-items: flex-start;
+  background: #fff;
+  padding: 15px 18px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.notification-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+
+.notification-card .icon {
+  font-size: 1.8rem;
+  margin-right: 15px;
+}
+
+.notification-card p {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #333;
+}
+
+.notification-card small {
+  color: gray;
+  font-size: 0.85rem;
+}
+
+/* Color-coded Borders */
+.notification-card.success { border-left: 6px solid #4caf50; }
+.notification-card.payment { border-left: 6px solid #ff9800; }
+.notification-card.info    { border-left: 6px solid #2196f3; }
+.notification-card.update  { border-left: 6px solid #9c27b0; }
+.notification-card.market  { border-left: 6px solid #3f51b5; }
+.notification-card.alert   { border-left: 6px solid #f44336; }
+.notification-card.machine { border-left: 6px solid #795548; }
+
+/* =========================
+   JOBS
+========================= */
+.jobs-container {
+  max-width: 900px;
+  margin: 30px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.job-card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: 0.3s;
+}
+
+.job-card:hover {
+  transform: translateY(-4px);
+}
+
+.job-card h3 {
+  color: #2e7d32;
+  margin-bottom: 8px;
+}
+
+.job-card p {
+  margin: 4px 0;
+}
+
+.job-card .apply-btn {
+  margin-top: 10px;
+  display: inline-block;
+  padding: 8px 16px;
+  background: #2e7d32;
+  color: white;
+  border-radius: 6px;
+  transition: background 0.3s;
+}
+
+.job-card .apply-btn:hover {
+  background: #1b5e20;
+}
+
+/* =========================
+   POST JOB FORM
+========================= */
+.form-container {
+  max-width: 700px;
+  margin: 25px auto;
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.form-container h2 {
+  margin-bottom: 20px;
+  color: #2e7d32;
+}
+
+form label {
+  display: block;
+  font-weight: 500;
+  margin: 10px 0 5px;
+}
+
+form input, form select, form textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin-bottom: 15px;
+}
+
+form button {
+  background: #2e7d32;
+  color: white;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+form button:hover {
+  background: #1b5e20;
+}
+
+/* =========================
+   REPORTS
+========================= */
+/* Reports Page */
+.reports-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  padding: 20px 40px;
+}
+
+.report-card {
+  flex: 1 1 250px;
+  max-width: 300px;
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+  text-align: center;
+}
+
+.report-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.report-card h2 {
+  color: #2e7d32;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+/* =========================
+   WEATHER
+========================= */
+.weather-container {
+  max-width: 800px;
+  margin: 30px auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.weather-card {
+  background: linear-gradient(135deg, #81c784, #43a047);
+  color: white;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.weather-card h3 {
+  margin-bottom: 10px;
+}
+
+/* =========================
+   ABOUT / SERVICES
+========================= */
+.section-container {
+  max-width: 900px;
+  margin: 30px auto;
+  text-align: center;
+  padding: 20px;
+}
+
+.section-container h2 {
+  color: #2e7d32;
+  margin-bottom: 15px;
+}
+
+.section-container p {
+  margin-bottom: 12px;
+  color: #555;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.service-card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: 0.3s;
+}
+
+.service-card:hover {
+  transform: translateY(-4px);
+}
+
+/* =========================
+   SETTINGS
+========================= */
+.settings-container {
+  max-width: 600px;
+  margin: 30px auto;
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.settings-container h2 {
+  margin-bottom: 15px;
+  color: #2e7d32;
+}
+body.dark {
+  background-color: #121212;
+  color: #f1f1f1;
+}
+
+.dark nav, .dark .card, .dark footer {
+  background-color: #1e1e1e;
+  color: #f1f1f1;
+  border: 1px solid #333;
+}
+/* Dark mode theme */
+body.dark-mode {
+  background-color: #121212;
+  color: #f1f1f1;
+}
+
+body.dark-mode nav {
+  background: #1f1f1f;
+}
+
+body.dark-mode .card, 
+body.dark-mode .form-container, 
+body.dark-mode .notify-box {
+  background: #2a2a2a;
+  color: #f1f1f1;
+  border: 1px solid #444;
+}
+
+
+
+/* =========================
+   FOOTER
+========================= */
+footer {
+  text-align: center;
+  padding: 15px;
+  background: #2e7d32;
+  color: white;
+  margin-top: 30px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
